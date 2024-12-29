@@ -4,4 +4,10 @@
  */
 
  
- <?php get_template_part('assets/sections/ld-block.php'); ?>
+ get_template_part('assets/sections/ld-block.php'); 
+ get_template_part('assets/sections/ld-block.php'); 
+ get_template_part('assets/sections/ld-block.php'); 
+ get_template_part('assets/sections/ld-block.php'); 
+ 
+ 
+ ?>

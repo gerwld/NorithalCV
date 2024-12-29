@@ -10,10 +10,7 @@ function enqueue_assets_main()
  wp_enqueue_style('font-montserrat', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
  wp_enqueue_style('font-roboto', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
 
- wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', '', '', true);
- wp_enqueue_script('glob-js', get_template_directory_uri() . '/assets/js/main_2.js', '', '', true);
- wp_enqueue_script('slider', get_template_directory_uri() . '/assets/js/header.js', '', '', true);
-
+ wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/index.js', '', '', true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_assets_main');
 
@@ -72,81 +69,81 @@ function belon_enqueue_styles($post_suffix){
 function belon_create_menu_page()
 {
  add_menu_page(
-  'Belon Pro Theme Settings',
-  'Belon Pro',
+  'Norithal CV Theme Settings',
+  'Norithal CV',
   'administrator',
-  'belon_pro_menu',
-  'belon_pro_menu_display',
+  'norithal_cv_menu',
+  'norithal_cv_menu_display',
   null,
   '32'
  );
 
  add_submenu_page(
-  'belon_pro_menu',
-  'Main Settings - Belon Pro Theme',
+  'norithal_cv_menu',
+  'Main Settings - Norithal CV Theme',
   'Main Settings',
   'administrator',
-  'belon_pro_menu',
-  'belon_pro_mainsettings_display'
+  'norithal_cv_menu',
+  'norithal_cv_mainsettings_display'
  );
 
  add_submenu_page(
-  'belon_pro_menu',
-  'Header Settings - Belon Pro Theme',
+  'norithal_cv_menu',
+  'Header Settings - Norithal CV Theme',
   'Header',
   'administrator',
-  'belon_pro_header',
-  'belon_pro_header_display'
+  'norithal_cv_header',
+  'norithal_cv_header_display'
  );
 
  add_submenu_page(
-  'belon_pro_menu',
-  'Contact Us Settings - Belon Pro Theme',
+  'norithal_cv_menu',
+  'Contact Us Settings - Norithal CV Theme',
   'Contact Us',
   'administrator',
-  'belon_pro_contact_us',
-  'belon_pro_contactus_display'
+  'norithal_cv_contact_us',
+  'norithal_cv_contactus_display'
  );
 
  add_submenu_page(
-  'belon_pro_menu',
-  'Slider Settings - Belon Pro Theme',
+  'norithal_cv_menu',
+  'Slider Settings - Norithal CV Theme',
   'Slider',
   'administrator',
-  'belon_pro_slider',
-  'belon_pro_slider_display'
+  'norithal_cv_slider',
+  'norithal_cv_slider_display'
  );
  add_submenu_page(
-  'belon_pro_menu',
-  'Social Icons Settings - Belon Pro Theme',
+  'norithal_cv_menu',
+  'Social Icons Settings - Norithal CV Theme',
   'Social Icons',
   'administrator',
-  'belon_pro_soc_icons',
-  'belon_pro_menu_soc_icons_display'
+  'norithal_cv_soc_icons',
+  'norithal_cv_menu_soc_icons_display'
  );
 }
 add_action('admin_menu', 'belon_create_menu_page');
 
-function belon_pro_menu_display() {
-  echo '<h1>Belon Pro Theme Settings</h1>';
+function norithal_cv_menu_display() {
+  echo '<h1>Norithal CV Theme Settings</h1>';
   // Your menu page content here
 }
 
 
-function belon_pro_mainsettings_display() {
-  echo '<h1>belon_pro_mainsettings_display</h1>';
+function norithal_cv_mainsettings_display() {
+  echo '<h1>norithal_cv_mainsettings_display</h1>';
   // Your menu page content here
 }
 
-function belon_pro_slider_display() {
-  echo '<h1>belon_pro_slider_display</h1>';
+function norithal_cv_slider_display() {
+  echo '<h1>norithal_cv_slider_display</h1>';
   // Your menu page content here
 }
 
 
 
 
-function belon_pro_menu_soc_icons_display(){
+function norithal_cv_menu_soc_icons_display(){
 ?>
  <div class="wrap">
   <h2>Настройки Social Icons</h2>
@@ -161,7 +158,7 @@ function belon_pro_menu_soc_icons_display(){
 <?php
 }
 
-function belon_pro_contactus_display(){
+function norithal_cv_contactus_display(){
  ?>
   <div class="wrap">
    <h2>Настройки Contact Us Section</h2>
@@ -176,7 +173,7 @@ function belon_pro_contactus_display(){
  <?php
  }
 
- function belon_pro_header_display() {
+ function norithal_cv_header_display() {
   ?>
   <div class="wrap">
    <h2>Настройки Header Section</h2>
@@ -573,7 +570,7 @@ function set_default_header_hd(){
   $options = [];
 }
  $setdefault = array_merge($options, array(
-  'belon_header_hd_title' => $options['belon_header_hd_title'] ? $options['belon_header_hd_title'] : 'Belon Pro Theme',
+  'belon_header_hd_title' => $options['belon_header_hd_title'] ? $options['belon_header_hd_title'] : 'Norithal CV Theme',
   'belon_header_hd_desc' => $options['belon_header_hd_desc'] ? $options['belon_header_hd_desc'] : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nulla neque, ratione sequi vel hic eveniet qui sit fuga laboriosam autem maxime ipsa nesciunt ipsum nisi fugit assumenda, consequatur blanditiis!',
   'belon_header_hd_btn_title' => $options['belon_header_hd_btn_title'] ? $options['belon_header_hd_btn_title'] : 'Explore',
   'belon_header_hd_btn_link' => $options['belon_header_hd_btn_link'] ? $options['belon_header_hd_btn_link'] : '#section-1',
@@ -604,10 +601,22 @@ function set_menus_panel($wp_customize)
   'panel' => 'menu_select_panel'
  ));
 
- $wp_customize->add_setting('header_setting', array(
+ $wp_customize->add_section('header_sect_subtitle', array(
+  'title' => 'Header Subtitle',
+  'priority' => 10,
+  'panel' => 'menu_select_panel'
+ ));
+
+ $wp_customize->add_setting('header_setting_title', array(
   'validate_callback' => 'true_validate_header',
   'sanitize_callback' => 'true_sanitize_header',
-  'default' => 'Belon'
+  'default' => 'Arturo Feeney'
+ ));
+
+ $wp_customize->add_setting('header_setting_desc', array(
+  'validate_callback' => 'true_validate_header',
+  'sanitize_callback' => 'true_sanitize_header',
+  'default' => 'Interior Designer'
  ));
 
  $wp_customize->add_setting('header_subtitle', array(
@@ -618,27 +627,34 @@ function set_menus_panel($wp_customize)
   'label' => 'Change header title',
   'type' => 'text',
   'section' => 'header_sect_title',
-  'settings' => 'header_setting',
+  'settings' => 'header_setting_title',
  ));
 
  $wp_customize->add_control('header_subtitle_control', array(
-  'label' => 'Show header description',
-  'description' => "*for change the description go to the site settings tab.",
-  'type' => 'checkbox',
-  'section' => 'header_sect_title',
-  'settings' => 'header_subtitle',
+  'label' => 'Change header subtitle',
+  'type' => 'text',
+  'section' => 'header_sect_subtitle',
+  'settings' => 'header_setting_desc',
  ));
+
+//  $wp_customize->add_control('header_subtitle_control', array(
+//   'label' => 'Show header description',
+//   'description' => "*for change the description go to the site settings tab.",
+//   'type' => 'checkbox',
+//   'section' => 'header_sect_title',
+//   'settings' => 'header_subtitle',
+//  ));
  //header title settings end
 
  //primary section contact button
- $wp_customize->add_section(
-  'contactbtn_menu_primary_section',
-  array(
-   'title' => 'Header Button',
-   'priority' => 10,
-   'panel' => 'menu_select_panel'
-  )
- );
+//  $wp_customize->add_section(
+//   'contactbtn_menu_primary_section',
+//   array(
+//    'title' => 'Header Button',
+//    'priority' => 10,
+//    'panel' => 'menu_select_panel'
+//   )
+//  );
 
  $wp_customize->add_setting(
   'contactbtn_menu_primary_text',

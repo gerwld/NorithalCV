@@ -1,37 +1,23 @@
-<div class="main-footer_wrapper">
-  <?php get_template_part('assets/sections/contact-us-block/contact-us-block'); ?>
-  <footer class="main-footer">
-    <div class="content_wrapper">
-      <div class="ft_block_2">
-        <nav class="footer_nav">
-          <ul><?php echo wp_get_nav_menu_name('footer-menu') ?>
-            <?php wp_nav_menu(array(
-              'theme_location' => 'footer-menu'
-            )); ?>
-          </ul>
-          <ul><?php echo wp_get_nav_menu_name('footer-menu-2') ?>
-            <?php wp_nav_menu(array(
-              'theme_location' => 'footer-menu-2'
-            )); ?>
-          </ul>
-          <ul><?php echo wp_get_nav_menu_name('footer-menu-3') ?>
-            <?php wp_nav_menu(array(
-              'theme_location' => 'footer-menu-3'
-            )); ?>
-          </ul>
-          <div class="cp_block">
-            <div class="sc_icons__dark">
-              <?php get_template_part('assets/sections/social-icons'); ?>
-            </div>
-            <span class="th_copyright" id="th_copyright"><span>Copyright &copy; <script>
-                  document.write(new Date().getFullYear())
-                </script>. </span><span>All Rights Reserved.</span></span>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </footer>
+<footer class="main_footer">
+  <div class="main_footer_content_h5umek ct_wrapper">
+  <nav class="navleb_eiyrwd navleb__sect1">
+    <label class="navleb_label_od8xfo">Email</label>
+    <a href="mailto://bebra@gmail.com" class="navleb_link_hbn9xu">weblxapplications@gmail.com</a>
+  </nav>
+  <nav class="navleb_eiyrwd navleb__sect2">
+    <label class="navleb_label_od8xfo">Phone</label>
+    <a href="tel://18005550199" class="navleb_link_hbn9xu"><span>+1(800)</span>555-0199</a>
+  </nav>
+  <nav class="navleb_eiyrwd navleb__sect3">
+    <label class="navleb_label_od8xfo">Follow me</label>
+    <a href="#" class="navleb_link_hbn9xu">123-456-789</a>
+  </nav>
+  <div class="lbcopght_j5q49j">
+    <span>© 2024 | Arturo Feeney.</span>
+    <span>All rights reserved.</span>
+  </div>
 </div>
+</footer>
 <?php wp_footer() ?>
 </body>
 

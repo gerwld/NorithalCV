@@ -3,5 +3,9 @@
  padding: 8px 6px 8px 33px;
 }
 
-#adminmenu a[href="admin.php?page=belon_pro_menu"] {
+#adminmenu a[href="admin.php?page=norithal_cv_menu"] {
+}
+
+.accordion-section-title button.accordion-trigger {
+  height: auto;
 }

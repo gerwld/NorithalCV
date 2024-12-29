@@ -41,7 +41,7 @@ if (function_exists('add_theme_support')) {
 };
 
 //disable admin bar by default
-add_filter('show_admin_bar', '__return_false');
+// add_filter('show_admin_bar', '__return_false');
 
 //Add menu sections
 function wpb_custom_new_menu(){
@@ -55,18 +55,18 @@ function wpb_custom_new_menu(){
  );} add_action('init', 'wpb_custom_new_menu');
 
  // //Add admin panel css styles
-function belon_enqueue_styles($post_suffix){
- if (strpos($post_suffix, 'belon') !== false) {
+function weblx_enqueue_styles($post_suffix){
+ if (strpos($post_suffix, 'weblx') !== false) {
   wp_enqueue_style('my-theme-settings', get_template_directory_uri() . '/assets/styles/theme-settings.css');
  }
  wp_enqueue_style('my-theme-settings', get_template_directory_uri() . '/assets/styles/admin-settings.css');
-}add_action('admin_enqueue_scripts', 'belon_enqueue_styles', 10);
+}add_action('admin_enqueue_scripts', 'weblx_enqueue_styles', 10);
 //*** add theme functional with hooks / params (end) ***//
 
 
 
-//add Belon menu page
-function belon_create_menu_page()
+//add weblx menu page
+function weblx_create_menu_page()
 {
  add_menu_page(
   'Norithal CV Theme Settings',
@@ -122,7 +122,7 @@ function belon_create_menu_page()
   'norithal_cv_menu_soc_icons_display'
  );
 }
-add_action('admin_menu', 'belon_create_menu_page');
+add_action('admin_menu', 'weblx_create_menu_page');
 
 function norithal_cv_menu_display() {
   echo '<h1>Norithal CV Theme Settings</h1>';
@@ -150,8 +150,8 @@ function norithal_cv_menu_soc_icons_display(){
   <!-- вывод ошибок -->
   <?php settings_errors(); ?>
   <form method="post" action="options.php" class="h2_hidden">
-   <?php settings_fields('belon_theme_sect1_options'); ?>
-   <?php do_settings_sections('belon_theme_sect1_options'); ?>
+   <?php settings_fields('weblx_theme_sect1_options'); ?>
+   <?php do_settings_sections('weblx_theme_sect1_options'); ?>
    <?php submit_button(); ?>
   </form>
  </div>
@@ -165,8 +165,8 @@ function norithal_cv_contactus_display(){
    <!-- вывод ошибок -->
    <?php settings_errors(); ?>
    <form method="post" action="options.php" class="h2_hidden">
-    <?php settings_fields('belon_theme_contact_options'); ?>
-    <?php do_settings_sections('belon_theme_contact_options'); ?>
+    <?php settings_fields('weblx_theme_contact_options'); ?>
+    <?php do_settings_sections('weblx_theme_contact_options'); ?>
     <?php submit_button(); ?>
    </form>
   </div>
@@ -180,8 +180,8 @@ function norithal_cv_contactus_display(){
    <!-- вывод ошибок -->
    <?php settings_errors(); ?>
    <form method="post" action="options.php" class="h2_hidden">
-    <?php settings_fields('belon_theme_header_options'); ?>
-    <?php do_settings_sections('belon_theme_header_options'); ?>
+    <?php settings_fields('weblx_theme_header_options'); ?>
+    <?php do_settings_sections('weblx_theme_header_options'); ?>
     <?php submit_button(); ?>
    </form>
   </div>
@@ -190,27 +190,27 @@ function norithal_cv_contactus_display(){
 
 
  //**** init & set soc icons subpage ****//
-function belon_theme_init_socicons_options()
+function weblx_theme_init_socicons_options()
 {
- if (false == get_option('belon_theme_sect1_options')) {
-  add_option('belon_theme_sect1_options');
+ if (false == get_option('weblx_theme_sect1_options')) {
+  add_option('weblx_theme_sect1_options');
  }
  add_settings_section(
-  'belon_sect1',
+  'weblx_sect1',
   'Social Icons',
-  'belon_sect1_callback',
-  'belon_theme_sect1_options'
+  'weblx_sect1_callback',
+  'weblx_theme_sect1_options'
  );
 
  add_settings_field(
   'twitter',
   'Twitter',
-  'belon_op_field_callback',
-  'belon_theme_sect1_options',
-  'belon_sect1',
+  'weblx_op_field_callback',
+  'weblx_theme_sect1_options',
+  'weblx_sect1',
   array(
    'id' => 'twitter',
-   'option' => 'belon_theme_sect1_options',
+   'option' => 'weblx_theme_sect1_options',
    'type' => 'text',
    'placeholder' => 'link'
   )
@@ -218,12 +218,12 @@ function belon_theme_init_socicons_options()
  add_settings_field(
   'facebook',
   'Facebook',
-  'belon_op_field_callback',
-  'belon_theme_sect1_options',
-  'belon_sect1',
+  'weblx_op_field_callback',
+  'weblx_theme_sect1_options',
+  'weblx_sect1',
   array(
    'id' => 'facebook',
-   'option' => 'belon_theme_sect1_options',
+   'option' => 'weblx_theme_sect1_options',
    'type' => 'text',
    'placeholder' => 'link'
   )
@@ -231,12 +231,12 @@ function belon_theme_init_socicons_options()
  add_settings_field(
   'linkedin',
   'Linkedin',
-  'belon_op_field_callback',
-  'belon_theme_sect1_options',
-  'belon_sect1',
+  'weblx_op_field_callback',
+  'weblx_theme_sect1_options',
+  'weblx_sect1',
   array(
    'id' => 'linkedin',
-   'option' => 'belon_theme_sect1_options',
+   'option' => 'weblx_theme_sect1_options',
    'type' => 'text',
    'placeholder' => 'link'
   )
@@ -244,12 +244,12 @@ function belon_theme_init_socicons_options()
  add_settings_field(
   'youtube',
   'YouTube',
-  'belon_op_field_callback',
-  'belon_theme_sect1_options',
-  'belon_sect1',
+  'weblx_op_field_callback',
+  'weblx_theme_sect1_options',
+  'weblx_sect1',
   array(
    'id' => 'youtube',
-   'option' => 'belon_theme_sect1_options',
+   'option' => 'weblx_theme_sect1_options',
    'type' => 'text',
    'placeholder' => 'link'
   )
@@ -257,12 +257,12 @@ function belon_theme_init_socicons_options()
  add_settings_field(
   'instagram',
   'Instagram',
-  'belon_op_field_callback',
-  'belon_theme_sect1_options',
-  'belon_sect1',
+  'weblx_op_field_callback',
+  'weblx_theme_sect1_options',
+  'weblx_sect1',
   array(
    'id' => 'instagram',
-   'option' => 'belon_theme_sect1_options',
+   'option' => 'weblx_theme_sect1_options',
    'type' => 'text',
    'placeholder' => 'link'
   )
@@ -270,12 +270,12 @@ function belon_theme_init_socicons_options()
  add_settings_field(
   'dribble',
   'Dribble',
-  'belon_op_field_callback',
-  'belon_theme_sect1_options',
-  'belon_sect1',
+  'weblx_op_field_callback',
+  'weblx_theme_sect1_options',
+  'weblx_sect1',
   array(
    'id' => 'dribble',
-   'option' => 'belon_theme_sect1_options',
+   'option' => 'weblx_theme_sect1_options',
    'type' => 'text',
    'placeholder' => 'link'
   )
@@ -283,235 +283,235 @@ function belon_theme_init_socicons_options()
  add_settings_field(
   'github',
   'GitHub',
-  'belon_op_field_callback',
-  'belon_theme_sect1_options',
-  'belon_sect1',
+  'weblx_op_field_callback',
+  'weblx_theme_sect1_options',
+  'weblx_sect1',
   array(
    'id' => 'github',
-   'option' => 'belon_theme_sect1_options',
+   'option' => 'weblx_theme_sect1_options',
    'type' => 'text',
    'placeholder' => 'link'
   )
  );
 
  register_setting(
-  'belon_theme_sect1_options',
-  'belon_theme_sect1_options',
-  'belon_theme_sanitize_urls'
+  'weblx_theme_sect1_options',
+  'weblx_theme_sect1_options',
+  'weblx_theme_sanitize_urls'
  );
 }
-add_action('admin_init', 'belon_theme_init_socicons_options');
+add_action('admin_init', 'weblx_theme_init_socicons_options');
 
 
 //**** init & set contact subpage ****//
-function belon_theme_init_contact_options()
+function weblx_theme_init_contact_options()
 {
- if (false == get_option('belon_theme_contact_options')) {
-  add_option('belon_theme_contact_options');
+ if (false == get_option('weblx_theme_contact_options')) {
+  add_option('weblx_theme_contact_options');
  }
  add_settings_section(
-  'belon_contact_hd',
+  'weblx_contact_hd',
   'Header and title',
-  'belon_contact_hd_callback',
-  'belon_theme_contact_options'
+  'weblx_contact_hd_callback',
+  'weblx_theme_contact_options'
  );
 
  add_settings_field(
-  'belon_contact_hd_title',
+  'weblx_contact_hd_title',
   'Section Title',
-  'belon_op_field_callback',
-  'belon_theme_contact_options',
-  'belon_contact_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_contact_options',
+  'weblx_contact_hd',
   array(
-   'id' => 'belon_contact_hd_title',
+   'id' => 'weblx_contact_hd_title',
    'type' => 'text',
-   'option' => 'belon_theme_contact_options'
+   'option' => 'weblx_theme_contact_options'
   )
  );
 
  add_settings_field(
-  'belon_contact_hd_desc',
+  'weblx_contact_hd_desc',
   'Section Descritpion',
-  'belon_op_field_callback',
-  'belon_theme_contact_options',
-  'belon_contact_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_contact_options',
+  'weblx_contact_hd',
   array(
-   'id' => 'belon_contact_hd_desc',
+   'id' => 'weblx_contact_hd_desc',
    'type' => 'textarea',
-   'option' => 'belon_theme_contact_options'
+   'option' => 'weblx_theme_contact_options'
   )
  );
  add_settings_field(
-  'belon_contact_hd_placeholder',
+  'weblx_contact_hd_placeholder',
   'Input placeholder value',
-  'belon_op_field_callback',
-  'belon_theme_contact_options',
-  'belon_contact_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_contact_options',
+  'weblx_contact_hd',
   array(
-   'id' => 'belon_contact_hd_placeholder',
+   'id' => 'weblx_contact_hd_placeholder',
    'type' => 'text',
-   'option' => 'belon_theme_contact_options'
+   'option' => 'weblx_theme_contact_options'
   )
  );
 
  add_settings_field(
-  'belon_contact_hd_btn_text',
+  'weblx_contact_hd_btn_text',
   'Button text value',
-  'belon_op_field_callback',
-  'belon_theme_contact_options',
-  'belon_contact_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_contact_options',
+  'weblx_contact_hd',
   array(
-   'id' => 'belon_contact_hd_btn_text',
+   'id' => 'weblx_contact_hd_btn_text',
    'type' => 'text',
-   'option' => 'belon_theme_contact_options'
+   'option' => 'weblx_theme_contact_options'
   )
  );
 
  add_settings_field(
-  'belon_contact_hd_hide',
+  'weblx_contact_hd_hide',
   'Hide Section',
-  'belon_op_field_callback',
-  'belon_theme_contact_options',
-  'belon_contact_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_contact_options',
+  'weblx_contact_hd',
   array(
-   'id' => 'belon_contact_hd_hide',
+   'id' => 'weblx_contact_hd_hide',
    'type' => 'checkbox',
-   'option' => 'belon_theme_contact_options'
+   'option' => 'weblx_theme_contact_options'
   )
  );
 
  register_setting(
-  'belon_theme_contact_options',
-  'belon_theme_contact_options',
-  'belon_theme_sanitize_text'
+  'weblx_theme_contact_options',
+  'weblx_theme_contact_options',
+  'weblx_theme_sanitize_text'
  );
 }
-add_action('admin_init', 'belon_theme_init_contact_options');
+add_action('admin_init', 'weblx_theme_init_contact_options');
 
 //**** init & set header subpage ****//
-function belon_theme_init_header_options()
+function weblx_theme_init_header_options()
 {
- if (false === get_option('belon_theme_header_options')) {
-  add_option('belon_theme_header_options');
+ if (false === get_option('weblx_theme_header_options')) {
+  add_option('weblx_theme_header_options');
  }
  add_settings_section(
-  'belon_header_hd',
+  'weblx_header_hd',
   'Header Block Options',
-  'belon_header_hd_callback',
-  'belon_theme_header_options'
+  'weblx_header_hd_callback',
+  'weblx_theme_header_options'
  );
 
  add_settings_section(
-  'belon_header_btn_hd',
+  'weblx_header_btn_hd',
   'Header Button Options',
-  'belon_header_btn_hd_callback',
-  'belon_theme_header_options'
+  'weblx_header_btn_hd_callback',
+  'weblx_theme_header_options'
  );
 
  add_settings_section(
-  'belon_header_il_hd',
+  'weblx_header_il_hd',
   'Header Illustration Options',
-  'belon_header_il_hd_callback',
-  'belon_theme_header_options'
+  'weblx_header_il_hd_callback',
+  'weblx_theme_header_options'
  );
 
  add_settings_field(
-  'belon_header_hd_title',
+  'weblx_header_hd_title',
   'Header Title',
-  'belon_op_field_callback',
-  'belon_theme_header_options',
-  'belon_header_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_header_options',
+  'weblx_header_hd',
   array(
-   'id' => 'belon_header_hd_title',
+   'id' => 'weblx_header_hd_title',
    'type' => 'text',
-   'option' => 'belon_theme_header_options'
+   'option' => 'weblx_theme_header_options'
   )
  );
  add_settings_field(
-  'belon_header_hd_desc',
+  'weblx_header_hd_desc',
   'Header Description',
-  'belon_op_field_callback',
-  'belon_theme_header_options',
-  'belon_header_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_header_options',
+  'weblx_header_hd',
   array(
-   'id' => 'belon_header_hd_desc',
+   'id' => 'weblx_header_hd_desc',
    'type' => 'textarea',
-   'option' => 'belon_theme_header_options'
+   'option' => 'weblx_theme_header_options'
   )
  );
 
  add_settings_field(
-  'belon_header_hd_btn_title',
+  'weblx_header_hd_btn_title',
   'Button text',
-  'belon_op_field_callback',
-  'belon_theme_header_options',
-  'belon_header_btn_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_header_options',
+  'weblx_header_btn_hd',
   array(
-   'id' => 'belon_header_hd_btn_title',
+   'id' => 'weblx_header_hd_btn_title',
    'type' => 'text',
-   'option' => 'belon_theme_header_options'
+   'option' => 'weblx_theme_header_options'
   )
  );
  add_settings_field(
-  'belon_header_hd_btn_link',
+  'weblx_header_hd_btn_link',
   'Button Link',
-  'belon_op_field_callback',
-  'belon_theme_header_options',
-  'belon_header_btn_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_header_options',
+  'weblx_header_btn_hd',
   array(
-   'id' => 'belon_header_hd_btn_link',
+   'id' => 'weblx_header_hd_btn_link',
    'type' => 'text',
-   'option' => 'belon_theme_header_options'
+   'option' => 'weblx_theme_header_options'
   )
  );
 
- echo get_option('belon_theme_header_options')['belon_header_hd_btn_newtab'] ?? 0; // Retrieve the options array
+ echo get_option('weblx_theme_header_options')['weblx_header_hd_btn_newtab'] ?? 0; // Retrieve the options array
 
 
  add_settings_field(
-  'belon_header_hd_btn_newtab',
+  'weblx_header_hd_btn_newtab',
   'Open in a new tab',
-  'belon_op_field_callback',
-  'belon_theme_header_options',
-  'belon_header_btn_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_header_options',
+  'weblx_header_btn_hd',
   array(
-   'id' => 'belon_header_hd_btn_newtab',
+   'id' => 'weblx_header_hd_btn_newtab',
    'type' => 'checkbox',
-   'option' => 'belon_theme_header_options'
+   'option' => 'weblx_theme_header_options'
   )
  );
 
  add_settings_field(
-  'belon_header_hd_il_choose',
+  'weblx_header_hd_il_choose',
   'Select Illustration',
-  'belon_op_field_callback',
-  'belon_theme_header_options',
-  'belon_header_il_hd',
+  'weblx_op_field_callback',
+  'weblx_theme_header_options',
+  'weblx_header_il_hd',
   array(
-   'id' => 'belon_header_hd_il_choose',
+   'id' => 'weblx_header_hd_il_choose',
    'type' => 'text',
-   'option' => 'belon_theme_header_options'
+   'option' => 'weblx_theme_header_options'
   )
  );
 
  register_setting(
-  'belon_theme_header_options',
-  'belon_theme_header_options',
-  "belon_theme_sanitize_text"
+  'weblx_theme_header_options',
+  'weblx_theme_header_options',
+  "weblx_theme_sanitize_text"
  );
 }
-add_action('admin_init', 'belon_theme_init_header_options');
+add_action('admin_init', 'weblx_theme_init_header_options');
 
 
 //callbacks for show info
-function belon_sect1_callback(){
+function weblx_sect1_callback(){
  echo '<p>Укажите ссылки на социальные сети:</p>';}
 
 //callbacks for contact us
-function belon_contact_hd_callback(){
+function weblx_contact_hd_callback(){
  echo '<p>Заполните данные секции:</p>';}
 
-function belon_op_field_callback($args) {
+function weblx_op_field_callback($args) {
  $id = $args['id'];
  $option = $args['option'];
  $options = get_option($option);
@@ -533,49 +533,49 @@ function belon_op_field_callback($args) {
 }
 
 //callbacks for header section
-function belon_header_hd_callback() {
+function weblx_header_hd_callback() {
  echo '<h3>Заголовок и подзаголовок:</h3>';
 }
-function belon_header_btn_hd_callback() {
+function weblx_header_btn_hd_callback() {
  echo '<h3>Настройки кнопки:</h3>';
 }
 
-function belon_header_il_hd_callback() {
+function weblx_header_il_hd_callback() {
  echo '<h3>Настройки иллюстрации:</h3>';
  }
 
 
 //default values setters
 function set_default_contact_hd(){
- $options = get_option('belon_theme_contact_options');
+ $options = get_option('weblx_theme_contact_options');
   // to ensure that $options is an array
   if (!is_array($options)) {
     $options = [];
   }
 
  $setdefault = array_merge($options, array(
-  'belon_contact_hd_title' => $options['belon_contact_hd_title'] ? $options['belon_contact_hd_title'] : 'Contact Us',
-  'belon_contact_hd_desc' => $options['belon_contact_hd_desc'] ? $options['belon_contact_hd_desc'] : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci aliquam libero laudantium cumque, aperiam quos nesciunt tempore, assumenda error veniam dolorum quidem.',
-  'belon_contact_hd_placeholder' => $options['belon_contact_hd_placeholder'] ? $options['belon_contact_hd_placeholder'] : 'Your email',
-  'belon_contact_hd_btn_text' => $options['belon_contact_hd_btn_text'] ? $options['belon_contact_hd_btn_text'] : 'Send',
-  'belon_contact_hd_hide' => $options['belon_contact_hd_hide'],
+  'weblx_contact_hd_title' => $options['weblx_contact_hd_title'] ? $options['weblx_contact_hd_title'] : 'Contact Us',
+  'weblx_contact_hd_desc' => $options['weblx_contact_hd_desc'] ? $options['weblx_contact_hd_desc'] : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci aliquam libero laudantium cumque, aperiam quos nesciunt tempore, assumenda error veniam dolorum quidem.',
+  'weblx_contact_hd_placeholder' => $options['weblx_contact_hd_placeholder'] ? $options['weblx_contact_hd_placeholder'] : 'Your email',
+  'weblx_contact_hd_btn_text' => $options['weblx_contact_hd_btn_text'] ? $options['weblx_contact_hd_btn_text'] : 'Send',
+  'weblx_contact_hd_hide' => $options['weblx_contact_hd_hide'],
  ));
- update_option('belon_theme_contact_options', $setdefault);
+ update_option('weblx_theme_contact_options', $setdefault);
 } set_default_contact_hd();
 
 function set_default_header_hd(){
- $options = get_option('belon_theme_header_options');
+ $options = get_option('weblx_theme_header_options');
  // to ensure that $options is an array
  if (!is_array($options)) {
   $options = [];
 }
  $setdefault = array_merge($options, array(
-  'belon_header_hd_title' => $options['belon_header_hd_title'] ? $options['belon_header_hd_title'] : 'Norithal CV Theme',
-  'belon_header_hd_desc' => $options['belon_header_hd_desc'] ? $options['belon_header_hd_desc'] : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nulla neque, ratione sequi vel hic eveniet qui sit fuga laboriosam autem maxime ipsa nesciunt ipsum nisi fugit assumenda, consequatur blanditiis!',
-  'belon_header_hd_btn_title' => $options['belon_header_hd_btn_title'] ? $options['belon_header_hd_btn_title'] : 'Explore',
-  'belon_header_hd_btn_link' => $options['belon_header_hd_btn_link'] ? $options['belon_header_hd_btn_link'] : '#section-1',
+  'weblx_header_hd_title' => $options['weblx_header_hd_title'] ? $options['weblx_header_hd_title'] : 'Norithal CV Theme',
+  'weblx_header_hd_desc' => $options['weblx_header_hd_desc'] ? $options['weblx_header_hd_desc'] : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nulla neque, ratione sequi vel hic eveniet qui sit fuga laboriosam autem maxime ipsa nesciunt ipsum nisi fugit assumenda, consequatur blanditiis!',
+  'weblx_header_hd_btn_title' => $options['weblx_header_hd_btn_title'] ? $options['weblx_header_hd_btn_title'] : 'Explore',
+  'weblx_header_hd_btn_link' => $options['weblx_header_hd_btn_link'] ? $options['weblx_header_hd_btn_link'] : '#section-1',
  ));
- update_option('belon_theme_header_options', $setdefault);
+ update_option('weblx_theme_header_options', $setdefault);
 } set_default_header_hd();
 
 //**** set main page in admin panel end ****//
@@ -765,7 +765,7 @@ function true_validate_cbtn_text($validity, $value)
  return $validity;
 }
 
-function belon_theme_sanitize_text($input)
+function weblx_theme_sanitize_text($input)
 {
  $output = array();
  foreach ($input as $key => $v) {
@@ -773,10 +773,10 @@ function belon_theme_sanitize_text($input)
    $output[$key] = strip_tags(stripslashes($input[$key]));
   }
  }
- return apply_filters('belon_theme_sanitize_urls', $output, $input);
+ return apply_filters('weblx_theme_sanitize_urls', $output, $input);
 }
 
-function belon_theme_sanitize_urls($input)
+function weblx_theme_sanitize_urls($input)
 {
  $output = array();
  foreach ($input as $key => $v) {
@@ -784,7 +784,12 @@ function belon_theme_sanitize_urls($input)
    $output[$key] = esc_url_raw(strip_tags(stripslashes($input[$key])));
   }
  }
- return apply_filters('belon_theme_sanitize_urls', $output, $input);
+ return apply_filters('weblx_theme_sanitize_urls', $output, $input);
 }
 
-//Test code
+// EXTRAS (Glob. functions, etc)
+
+function inline_svg($relative_path) {
+  $svg_file = get_template_directory() . '/' . ltrim($relative_path, '/');
+  return (file_exists($svg_file)) ? file_get_contents($svg_file) : '<!-- SVG not found -->';
+}

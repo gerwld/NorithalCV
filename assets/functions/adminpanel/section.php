@@ -449,7 +449,7 @@ function weblx_theme_init_header_options()
     )
   );
 
-  echo get_option('weblx_theme_header_options')['weblx_header_hd_btn_newtab'] ?? 0; // Retrieve the options array
+  // echo get_option('weblx_theme_header_options')['weblx_header_hd_btn_newtab'] ?? 0; // Retrieve the options array
 
 
   add_settings_field(

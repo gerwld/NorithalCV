@@ -23,7 +23,7 @@
           <div class="header_logo_icon_zxi7wp">ic</div>
           <span class="header_logo_name_sx1980"><?php echo get_theme_mod('header_setting_title') ?></span>
         </a>
-        <span class="header_logo_sub_ahif43"><?php echo get_theme_mod('header_setting_desc') ?></span>
+        <span class="header_logo_sub_ahif43"><?php echo get_theme_mod('header_setting_subtitle') ?></span>
       </div>
 
       <nav class="header_navigation">

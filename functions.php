@@ -10,7 +10,7 @@ require_once get_template_directory() . '/assets/functions/adminpanel/customizer
 
 
 // 2. Main settings (Custom admin panel page)
-require_once get_template_directory() . '/assets/functions/adminpanel/section.php';
+// require_once get_template_directory() . '/assets/functions/adminpanel/section.php';
 
 
 // 3. Enqueue scripts and styles
@@ -19,3 +19,6 @@ require_once get_template_directory() . '/assets/functions/enqueue-scripts.php';
 
 // 4. Helper functions
 require_once get_template_directory() . '/assets/functions/helpers.php';
+
+// 5. Dev reset
+require_once get_template_directory() . '/assets/functions/_dev_reset.php';

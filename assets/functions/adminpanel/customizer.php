@@ -24,9 +24,11 @@ function set_menus_panel($wp_customize)
   ));
   // --- Header title section -> setting 
   $wp_customize->add_setting('header_setting_title', array(
-    'validate_callback' => 'true_validate_header',
-    'sanitize_callback' => 'true_sanitize_header',
-    'default' => 'Arturo Feeney'
+    'validate_callback' => function ($validity, $value) {
+      return vs_validate_field($validity, $value, 30, "Title", true);
+    },
+    'sanitize_callback' => 'vs_sanitize_header',
+    'default' => get_bloginfo('name') ?? 'Arturo Feeney'
   ));
   // ---- Header title section -> setting -> control
   $wp_customize->add_control('header_title_control', array(
@@ -45,9 +47,11 @@ function set_menus_panel($wp_customize)
     'panel' => 'menu_select_panel'
   ));
   // --- Header subtitle section -> setting 
-  $wp_customize->add_setting('header_setting_desc', array(
-    'validate_callback' => 'true_validate_header',
-    'sanitize_callback' => 'true_sanitize_header',
+  $wp_customize->add_setting('header_setting_subtitle', array(
+    'validate_callback' => function ($validity, $value) {
+      return vs_validate_field($validity, $value, 30, "Subtitle", false);
+    },
+    'sanitize_callback' => 'vs_sanitize_header',
     'default' => 'Interior Designer'
   ));
   // ---- Header subtitle section -> setting -> control
@@ -71,13 +75,13 @@ add_action('customize_register', 'set_menus_panel');
 // ** ----------------------------------------------------- ** //
 
 
-//Валидатор и санитайзер
-function true_sanitize_header($value)
+
+function vs_sanitize_header($value)
 {
   return sanitize_text_field($value);
 }
 
-function true_validate_header($validity, $value)
+function vs_validate_header($validity, $value)
 {
   if ('' === $value) {
     $validity->add('empty_copy', 'Header title cannot be empty');
@@ -87,25 +91,19 @@ function true_validate_header($validity, $value)
   return $validity;
 }
 
-function true_validate_cbtn_link($validity, $value)
+function vs_validate_field($validity, $value, $maxlength, $field_name, $nonempty)
 {
-  if ('' === $value) {
-    $validity->add('empty_copy', 'Button link cannot be empty');
+  if ($nonempty && '' === $value) {
+    $validity->add('empty_copy', "$field_name cannot be empty");
+  } else if (strlen($value) > $maxlength) {
+    $validity->add('empty_copy', "$field_name cannot be greater that $maxlength symbols");
   }
   return $validity;
 }
 
-function true_validate_cbtn_text($validity, $value)
-{
-  if ('' === $value) {
-    $validity->add('empty_copy', 'Button text value cannot be empty');
-  } else if (strlen($value) > 15) {
-    $validity->add('empty_copy', 'Button text value cannot be greater that 15 symbols');
-  }
-  return $validity;
-}
 
-function weblx_theme_sanitize_text($input)
+
+function wlx_sanitize_text($input)
 {
   $output = array();
   foreach ($input as $key => $v) {
@@ -113,10 +111,10 @@ function weblx_theme_sanitize_text($input)
       $output[$key] = strip_tags(stripslashes($input[$key]));
     }
   }
-  return apply_filters('weblx_theme_sanitize_urls', $output, $input);
+  return apply_filters('wlx_sanitize_text', $output, $input);
 }
 
-function weblx_theme_sanitize_urls($input)
+function wlx_sanitize_url($input)
 {
   $output = array();
   foreach ($input as $key => $v) {
@@ -124,5 +122,25 @@ function weblx_theme_sanitize_urls($input)
       $output[$key] = esc_url_raw(strip_tags(stripslashes($input[$key])));
     }
   }
-  return apply_filters('weblx_theme_sanitize_urls', $output, $input);
+  return apply_filters('wlx_sanitize_url', $output, $input);
 }
+
+
+
+// ** ----------------------------------------------------- ** //
+// ** ------------------- Initialization  ----------------- ** //
+// ** ----------------- of the cuztomizer  ---------------- ** //
+// ** ----------------------------------------------------- ** //
+
+
+// Initializes values by principle get -> if none? -> set
+function initialize_customizer_defaults()
+{
+  if (!get_theme_mod('header_setting_title')) {
+    set_theme_mod('header_setting_title', get_bloginfo('name') ?? 'Arturo Feeney');
+  }
+  if (!get_theme_mod('header_setting_subtitle')) {
+    set_theme_mod('header_setting_subtitle', get_bloginfo('description') ?? 'Interior Designer');
+  }
+}
+add_action('after_setup_theme', 'initialize_customizer_defaults');

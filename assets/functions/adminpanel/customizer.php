@@ -69,14 +69,25 @@ function getHeroSection($wp_customize)
   $preset_data = [
     'title' => 'Welcome to my portfolio.',
     'sub' => 'A Bit About Me',
-    'desc' => 'Every space has a story, and my mission is to bring it to life. I blend creativity with functionality to design interiors that inspire, comfort, and reflect your unique style.'
+    'desc' => 'Every space has a story, and my mission is to bring it to life. I blend creativity with functionality to design interiors that inspire, comfort, and reflect your unique style.',
+    'btn1_text' => 'Contact Me',
+    'btn1_link' => '/contacts',
+    'btn2_text' => 'Resume',
+    'btn2_link' => '/resume',
+    'btn3_text' => 'Projects',
+    'btn3_link' => '/projects',
+    'btn1_label' => 'First',
+    'btn2_label' => 'Second',
+    'btn3_label' => 'Third',
   ];
+  $GLOBALS['preset_data'] = $preset_data;
   // - Create section 
   $wp_customize->add_section('hero_section', array(
     'title' => 'Hero Settings',
     'priority' => 10,
     'panel' => 'global_panel'
   ));
+
   // -- Hero Settings => Title setting 
   $wp_customize->add_setting('hero_setting_title', array(
     'validate_callback' => function ($validity, $value) {
@@ -92,6 +103,7 @@ function getHeroSection($wp_customize)
     'section' => 'hero_section',
     'settings' => 'hero_setting_title',
   ));
+
   // -- Hero Settings => Subtitle setting 
   $wp_customize->add_setting('hero_setting_subtitle', array(
     'validate_callback' => function ($validity, $value) {
@@ -107,6 +119,7 @@ function getHeroSection($wp_customize)
     'section' => 'hero_section',
     'settings' => 'hero_setting_subtitle',
   ));
+
   // -- Hero Settings => Description setting 
   $wp_customize->add_setting('hero_setting_desc', array(
     'validate_callback' => function ($validity, $value) {
@@ -122,6 +135,52 @@ function getHeroSection($wp_customize)
     'section' => 'hero_section',
     'settings' => 'hero_setting_desc',
   ));
+
+
+  function getButtonByID($id)
+  {
+    global $preset_data;
+    global $wp_customize;
+    if ($wp_customize && $id) {
+      // -- Hero Settings => Button 1 Title 
+      $wp_customize->add_setting("hero_btn_title_$id", array(
+        'validate_callback' => function ($validity, $value) {
+          return vs_validate_field($validity, $value, 15, "Button title", false);
+        },
+        'sanitize_callback' => 'vs_sanitize_header',
+        'default' => $preset_data["btn$id" . "_text"]
+      ));
+      // --- Hero Settings => Subitle setting => Control for it
+      $wp_customize->add_control("hero_btn_title_$id" . "_control", array(
+        'label' => $preset_data["btn$id" . "_label"] . " button – Text",
+        'type' => 'text',
+        'section' => 'hero_section',
+        'settings' => "hero_btn_title_$id",
+      ));
+      // -- Hero Settings => Button 1 Link
+      $wp_customize->add_setting("hero_btn_link_$id", array(
+        'validate_callback' => function ($validity, $value) {
+          return vs_validate_field($validity, $value, 280, "Description", false);
+        },
+        'sanitize_callback' => 'wlx_sanitize_url',
+        'default' => $preset_data["btn$id" . "_link"]
+      ));
+      // --- Hero Settings => Subitle setting => Control for it
+      $wp_customize->add_control("hero_btn_link_$id" . "_control", array(
+        'label' =>  $preset_data["btn$id" . "_label"] . " button – Link",
+        'type' => 'text',
+        'input_attrs' => array(
+          'placeholder' => __('https://', 'directorist'),
+        ),
+        'section' => 'hero_section',
+        'settings' => "hero_btn_link_$id",
+      ));
+    }
+  }
+
+  getButtonByID(1);
+  getButtonByID(2);
+  getButtonByID(3);
 }
 
 

@@ -13,9 +13,17 @@
       <h3 class="hero_block_subtitle_dfa0fm"><?php echo get_theme_mod('hero_setting_subtitle') ?></h3>
       <p class="hero_block_desc_pxc8fn"><?php echo get_theme_mod('hero_setting_desc') ?></p>
       <nav class="hero_block_nav_g6s6zi">
-        <a href="/contact.html" class="hero_block_navlink_9ag8s8">Contact Me</a>
-        <a href="/resume.html" class="hero_block_navlink_9ag8s8">Resume</a>
-        <a href="/projects.html" class="hero_block_navlink_9ag8s8">Projects</a>
+        <?php
+        // Loop through buttons (adjust the range as needed for your buttons)
+        for ($i = 1; $i <= 3; $i++) {
+          $title = get_theme_mod("hero_btn_title_$i");
+          $link = get_theme_mod("hero_btn_link_$i");
+
+          if ($title && $link) {
+            echo '<a href="' . esc_url($link) . '" class="hero_block_navlink_9ag8s8 is_' . "$i\">" . esc_html($title) . '</a>';
+          }
+        }
+        ?>
       </nav>
     </div>
   </div>

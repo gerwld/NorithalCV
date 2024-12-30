@@ -36,7 +36,7 @@
             <a href="#" class="header_navigation_link_j1ph9o">Projects</a>
           </li>
           <li class="header_navigation_item_qpbg9x">
-            <a href="#" class="header_navigation_link_j1ph9o">Contacts</a>
+            <a href="#" class="header_navigation_link_j1ph9o">Contact</a>
           </li>
 
           <div class="mobile_header_buttons_lw7g60 header_navigation_buttons_21q1vu">

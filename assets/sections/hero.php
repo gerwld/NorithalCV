@@ -9,9 +9,9 @@
 
   <div class="hero_block_right_6r9dz0">
     <div class="hero_block_right__content_2h9yzm">
-      <h1 class="hero_block_title_dcfukm">Welcome to my portfolio.</h1>
-      <h3 class="hero_block_subtitle_dfa0fm">A Bit About Me</h3>
-      <p class="hero_block_desc_pxc8fn">Every space has a story, and my mission is to bring it to life. I blend creativity with functionality to design interiors that inspire, comfort, and reflect your unique style.</p>
+      <h1 class="hero_block_title_dcfukm"><?php echo get_theme_mod('hero_setting_title') ?></h1>
+      <h3 class="hero_block_subtitle_dfa0fm"><?php echo get_theme_mod('hero_setting_subtitle') ?></h3>
+      <p class="hero_block_desc_pxc8fn"><?php echo get_theme_mod('hero_setting_desc') ?></p>
       <nav class="hero_block_nav_g6s6zi">
         <a href="/contact.html" class="hero_block_navlink_9ag8s8">Contact Me</a>
         <a href="/resume.html" class="hero_block_navlink_9ag8s8">Resume</a>

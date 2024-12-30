@@ -13,7 +13,7 @@
     <a href="#" class="navleb_link_hbn9xu">123-456-789</a>
   </nav>
   <div class="lbcopght_j5q49j">
-    <span>© 2024 | Arturo Feeney.</span>
+    <span>© <?php echo date('Y'); ?>, <?php echo get_theme_mod('header_setting_title') ?>.</span>
     <span>All rights reserved.</span>
   </div>
 </div>

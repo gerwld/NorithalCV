@@ -2,27 +2,34 @@
 // Theme customizer.php
 
 
-// - Sets the new panel
-function set_menus_panel($wp_customize)
+// - Main panel
+function set_global_customizer($wp_customize)
 {
   $wp_customize->add_panel(
-    'menu_select_panel',
+    'global_panel',
     array(
-      'title' => 'Header settings',
+      'title' => 'Main Theme Settings',
       'description' => "Most essential configurations for the elements in the header section.",
       'priority' => 10,
     )
   );
 
+  getHeaderSection($wp_customize);
+  getHeroSection($wp_customize);
+}
 
 
-  // -- Header title section
-  $wp_customize->add_section('header_sect_title', array(
-    'title' => 'Header Title',
+// -- Main panel  => Header Settings
+function getHeaderSection($wp_customize)
+{
+  // - Create section 
+  $wp_customize->add_section('header_section', array(
+    'title' => 'Header Settings',
     'priority' => 10,
-    'panel' => 'menu_select_panel'
+    'panel' => 'global_panel'
   ));
-  // --- Header title section -> setting 
+
+  // -- Header Settings => Title setting 
   $wp_customize->add_setting('header_setting_title', array(
     'validate_callback' => function ($validity, $value) {
       return vs_validate_field($validity, $value, 30, "Title", true);
@@ -30,41 +37,98 @@ function set_menus_panel($wp_customize)
     'sanitize_callback' => 'vs_sanitize_header',
     'default' => get_bloginfo('name') ?? 'Arturo Feeney'
   ));
-  // ---- Header title section -> setting -> control
+  // --- Header Settings => Title setting => Control for it
   $wp_customize->add_control('header_title_control', array(
     'label' => 'Change header title',
     'type' => 'text',
-    'section' => 'header_sect_title',
+    'section' => 'header_section',
     'settings' => 'header_setting_title',
   ));
 
-
-
-  // -- Header subtitle section
-  $wp_customize->add_section('header_sect_subtitle', array(
-    'title' => 'Header Subtitle',
-    'priority' => 10,
-    'panel' => 'menu_select_panel'
-  ));
-  // --- Header subtitle section -> setting 
+  // -- Header Settings => Subtitle setting 
   $wp_customize->add_setting('header_setting_subtitle', array(
     'validate_callback' => function ($validity, $value) {
       return vs_validate_field($validity, $value, 30, "Subtitle", false);
     },
     'sanitize_callback' => 'vs_sanitize_header',
-    'default' => 'Interior Designer'
+    'default' => get_bloginfo('description') ?? 'Interior Designer'
   ));
-  // ---- Header subtitle section -> setting -> control
+  // --- Header Settings => Subitle setting => Control for it
   $wp_customize->add_control('header_subtitle_control', array(
     'label' => 'Change header subtitle',
     'type' => 'text',
-    'section' => 'header_sect_subtitle',
-    'settings' => 'header_setting_desc',
+    'section' => 'header_section',
+    'settings' => 'header_setting_subtitle',
   ));
 }
 
-add_action('customize_register', 'set_menus_panel');
 
+// -- Main panel  => Hero Settings
+function getHeroSection($wp_customize)
+{
+  $preset_data = [
+    'title' => 'Welcome to my portfolio.',
+    'sub' => 'A Bit About Me',
+    'desc' => 'Every space has a story, and my mission is to bring it to life. I blend creativity with functionality to design interiors that inspire, comfort, and reflect your unique style.'
+  ];
+  // - Create section 
+  $wp_customize->add_section('hero_section', array(
+    'title' => 'Hero Settings',
+    'priority' => 10,
+    'panel' => 'global_panel'
+  ));
+  // -- Hero Settings => Title setting 
+  $wp_customize->add_setting('hero_setting_title', array(
+    'validate_callback' => function ($validity, $value) {
+      return vs_validate_field($validity, $value, 40, "Title", true);
+    },
+    'sanitize_callback' => 'vs_sanitize_header',
+    'default' => $preset_data['title']
+  ));
+  // --- Hero Settings => Title setting => Control for it
+  $wp_customize->add_control('hero_title_control', array(
+    'label' => 'Change hero title',
+    'type' => 'text',
+    'section' => 'hero_section',
+    'settings' => 'hero_setting_title',
+  ));
+  // -- Hero Settings => Subtitle setting 
+  $wp_customize->add_setting('hero_setting_subtitle', array(
+    'validate_callback' => function ($validity, $value) {
+      return vs_validate_field($validity, $value, 30, "Subtitle", false);
+    },
+    'sanitize_callback' => 'vs_sanitize_header',
+    'default' => $preset_data['sub']
+  ));
+  // --- Hero Settings => Subitle setting => Control for it
+  $wp_customize->add_control('hero_subtitle_control', array(
+    'label' => 'Change hero subtitle',
+    'type' => 'text',
+    'section' => 'hero_section',
+    'settings' => 'hero_setting_subtitle',
+  ));
+  // -- Hero Settings => Description setting 
+  $wp_customize->add_setting('hero_setting_desc', array(
+    'validate_callback' => function ($validity, $value) {
+      return vs_validate_field($validity, $value, 280, "Description", false);
+    },
+    'sanitize_callback' => 'vs_sanitize_header',
+    'default' => $preset_data['desc']
+  ));
+  // --- Hero Settings => Subitle setting => Control for it
+  $wp_customize->add_control('hero_desc_control', array(
+    'label' => 'Change hero description',
+    'type' => 'text',
+    'section' => 'hero_section',
+    'settings' => 'hero_setting_desc',
+  ));
+}
+
+
+
+
+// Append all panels using $customize_register wp hook
+add_action('customize_register', 'set_global_customizer');
 
 
 
@@ -124,23 +188,3 @@ function wlx_sanitize_url($input)
   }
   return apply_filters('wlx_sanitize_url', $output, $input);
 }
-
-
-
-// ** ----------------------------------------------------- ** //
-// ** ------------------- Initialization  ----------------- ** //
-// ** ----------------- of the cuztomizer  ---------------- ** //
-// ** ----------------------------------------------------- ** //
-
-
-// Initializes values by principle get -> if none? -> set
-function initialize_customizer_defaults()
-{
-  if (!get_theme_mod('header_setting_title')) {
-    set_theme_mod('header_setting_title', get_bloginfo('name') ?? 'Arturo Feeney');
-  }
-  if (!get_theme_mod('header_setting_subtitle')) {
-    set_theme_mod('header_setting_subtitle', get_bloginfo('description') ?? 'Interior Designer');
-  }
-}
-add_action('after_setup_theme', 'initialize_customizer_defaults');

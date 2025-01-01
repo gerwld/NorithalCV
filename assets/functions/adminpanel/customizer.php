@@ -14,14 +14,17 @@ function set_global_customizer($wp_customize)
     )
   );
 
-  getHeaderSection($wp_customize);
-  getHeroSection($wp_customize);
+  getHeaderSection();
+  getHeroSection();
+  getFooterSection();
+  getSocialsSection();
 }
 
 
 // -- Main panel  => Header Settings
-function getHeaderSection($wp_customize)
+function getHeaderSection()
 {
+  global $wp_customize;
   // - Create section 
   $wp_customize->add_section('header_section', array(
     'title' => 'Header Settings',
@@ -64,8 +67,9 @@ function getHeaderSection($wp_customize)
 
 
 // -- Main panel  => Hero Settings
-function getHeroSection($wp_customize)
+function getHeroSection()
 {
+  global $wp_customize;
   $preset_data = [
     'title' => 'Welcome to my portfolio.',
     'sub' => 'A Bit About Me',
@@ -137,8 +141,7 @@ function getHeroSection($wp_customize)
   ));
 
 
-  function getButtonByID($id)
-  {
+  $setButtonByID = function ($id) {
     global $preset_data;
     global $wp_customize;
     if ($wp_customize && $id) {
@@ -176,14 +179,183 @@ function getHeroSection($wp_customize)
         'settings' => "hero_btn_link_$id",
       ));
     }
-  }
+  };
 
-  getButtonByID(1);
-  getButtonByID(2);
-  getButtonByID(3);
+  $setButtonByID(1);
+  $setButtonByID(2);
+  $setButtonByID(3);
+}
+
+// -- Main panel  => Footer Settings
+function getFooterSection()
+{
+  global $wp_customize;
+  $preset_data = [
+    'footer_block1_title' => 'Email',
+    'footer_block1_value' => '<a href="mailto://weblxapplications@gmail.com">weblxapplications@gmail.com</a>',
+    'footer_block2_title' => 'Phone',
+    'footer_block2_value' => '<a href="tel://18005550199"><span>+1(800)</span>555-0199</a>',
+  ];
+  $GLOBALS['preset_data'] = $preset_data;
+  // - Create section 
+  $wp_customize->add_section('footer_section', array(
+    'title' => 'Footer Settings',
+    'priority' => 10,
+    'panel' => 'global_panel'
+  ));
+
+
+  $setSocialsByKey = function ($id) {
+    global $preset_data;
+    global $wp_customize;
+    if ($wp_customize && $id) {
+      // -- Footer Settings => Block 1 Title setting 
+      $wp_customize->add_setting("footer_block$id", array(
+        'validate_callback' => function ($validity, $value) {
+          return vs_validate_field($validity, $value, 25, "Title", true);
+        },
+        'sanitize_callback' => 'vs_sanitize_header',
+        'default' => $preset_data['footer_block' . $id . '_title']
+      ));
+      // --- Footer Settings => Block 1 Title setting => Control for it
+      $wp_customize->add_control('footer_block' . $id . '_control', array(
+        'label' => 'Block ' . $id . ' - Title',
+        'type' => 'text',
+        'section' => 'footer_section',
+        'settings' => 'footer_block' . $id,
+      ));
+
+      // -- Footer Settings => Block 1 Value setting 
+      $wp_customize->add_setting('footer_block' . $id . 'value', array(
+        'validate_callback' => function ($validity, $value) {
+          return vs_validate_field($validity, $value, 300, "Value", true);
+        },
+        'sanitize_callback' => 'vs_sanitize_header',
+        'default' => $preset_data['footer_block' . $id . '_value']
+      ));
+      // --- Footer Settings => Block 1 Value setting => Control for it
+      $wp_customize->add_control('footer_block' . $id . 'value_control', array(
+        'label' => 'Block ' . $id . ' - Value (html)',
+        'type' => 'textarea',
+        'section' => 'footer_section',
+        'settings' => 'footer_block' . $id . 'value',
+      ));
+    }
+  };
+
+
+
+  $setFooterBlockByID = function ($id) {
+    global $preset_data;
+    global $wp_customize;
+    $prefix = 'footer_block' . $id;
+
+    if ($wp_customize && $id) {
+
+      // -- Footer Settings => Block Title setting 
+      $wp_customize->add_setting("footer_block$id", array(
+        'validate_callback' => function ($validity, $value) {
+          return vs_validate_field($validity, $value, 25, "Title", true);
+        },
+        'sanitize_callback' => 'vs_sanitize_header',
+        'default' => $preset_data[$prefix . '_title']
+      ));
+      // --- Footer Settings => Block Title setting => Control for it
+      $wp_customize->add_control($prefix . '_control', array(
+        'label' => 'Block ' . $id . ' - Title',
+        'type' => 'text',
+        'section' => 'footer_section',
+        'settings' => $prefix,
+      ));
+
+      // -- Footer Settings => Block Value setting 
+      $wp_customize->add_setting($prefix . '_value', array(
+        'validate_callback' => function ($validity, $value) {
+          return vs_validate_field($validity, $value, 300, "Value", true);
+        },
+        'sanitize_callback' => 'vs_sanitize_header',
+        'default' => $preset_data[$prefix . '_value']
+      ));
+      // --- Footer Settings => Block Value setting => Control for it
+      $wp_customize->add_control($prefix . 'value_control', array(
+        'label' => 'Block ' . $id . ' - Value (html)',
+        'type' => 'textarea',
+        'section' => 'footer_section',
+        'settings' => $prefix . '_value',
+      ));
+
+      // -- Footer Settings => Block Disable setting 
+      $wp_customize->add_setting($prefix . '_disabled', array(
+        'default' => false
+      ));
+      // --- Footer Settings => Block Disable setting => Control for it
+      $wp_customize->add_control($prefix . 'disable_control', array(
+        'label' => 'Hide Block',
+        'type' => 'checkbox',
+        'section' => 'footer_section',
+        'settings' => $prefix . '_disabled',
+      ));
+    }
+  };
+
+
+  $setFooterBlockByID(1);
+  $setFooterBlockByID(2);
 }
 
 
+// -- Main panel  => Social Links
+function getSocialsSection()
+{
+  global $wp_customize;
+  $socials_available = [
+    'facebook', 'linkedin',
+    'twitter', 'youtube',
+    'instagram', 'dribble',
+    'github', 'behance',
+    'codepen', 'kofi',
+    'telegram', 'tiktok',
+  ];
+
+  // - Create section 
+  $wp_customize->add_section('socials_section', array(
+    'title' => 'Social Links',
+    'priority' => 10,
+    'panel' => 'global_panel'
+  ));
+
+
+  $setSocialsByKey = function ($key) {
+    global $preset_data;
+    global $wp_customize;
+    if ($wp_customize && $key) {
+      // -- Footer Settings => Block 1 Title setting 
+      $wp_customize->add_setting("social_$key", array(
+        'validate_callback' => function ($validity, $value) {
+          return vs_validate_field($validity, $value, 1500, "Link", false);
+        },
+        'sanitize_callback' => 'vs_sanitize_header',
+        'default' => $preset_data['social_' . $key . '_title'] ?? ""
+      ));
+      // --- Footer Settings => Block 1 Title setting => Control for it
+      $wp_customize->add_control('social_' . $key . '_control', array(
+        'label' => ucfirst($key) . ' Link',
+        'type' => 'text',
+        'section' => 'socials_section',
+        'settings' => "social_$key",
+        'input_attrs' => array(
+          'placeholder' => __('https://', 'directorist'),
+        ),
+      ));
+
+    }
+  };
+
+
+  array_map($setSocialsByKey, $socials_available);
+
+
+}
 
 
 // Append all panels using $customize_register wp hook

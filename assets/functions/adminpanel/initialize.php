@@ -28,7 +28,7 @@ function initialize_customizer_defaults()
     // Header
     'header_setting_title' => get_bloginfo('name') ?? 'Arturo Feeney',
     'header_setting_subtitle' => get_bloginfo('description') ?? 'Interior Designer',
-    'wlx_header_menu' => 'default_menu',
+    'wlx_header_menu' => 'norithal_main_menu',
 
     // Hero text
     'hero_setting_title' => 'Welcome to my portfolio.',
@@ -72,9 +72,9 @@ function initialize_customizer_defaults()
 /**
  * Initialize theme default menu.
  */
-function wlx_create_default_menu() {
+function wlx_create_norithal_main_menu() {
   // Check if the default menu exists, if not, create it
-  $menu_name = 'default_menu';
+  $menu_name = 'norithal_main_menu';
   $menu_exists = wp_get_nav_menu_object($menu_name);
 
   if (!$menu_exists) {
@@ -98,14 +98,14 @@ function wlx_create_default_menu() {
 
 
       wp_update_nav_menu_item($menu_id, 0, array(
-        'menu-item-title' => __('contact'),
+        'menu-item-title' => __('Contact'),
         'menu-item-classes' => 'about',
         'menu-item-url'   => home_url('/contact'), 
         'menu-item-status' => 'publish'
     ));
   }
 }
-add_action('after_switch_theme', 'wlx_create_default_menu');
+add_action('after_switch_theme', 'wlx_create_norithal_main_menu');
 
 
 add_action('after_setup_theme', 'initialize_customizer_defaults');

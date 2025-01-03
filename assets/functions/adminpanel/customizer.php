@@ -78,13 +78,13 @@ function getHeaderSection()
 
     return $choices;
   }
-  // Add a setting to store the selected menu
+  // Header Settings => Choose Menu Setting
   $wp_customize->add_setting('wlx_header_menu', array(
     'default'   => '',
     'transport' => 'refresh',
   ));
 
-  // Add the menu selector control to the customizer
+  // Header Settings => Choose Menu Setting => Control for it
   $wp_customize->add_control('wlx_header_menu_control', array(
     'label'    => 'Choose a menu',
     'section'  => 'header_section',

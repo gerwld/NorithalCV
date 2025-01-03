@@ -20,12 +20,19 @@
   top: -1.9rem;
 }
 
+#customize-control-footer_block2title_control,
+#customize-control-footer_block_control,
 #customize-control-hero_btn_title_1_control,
 #customize-control-hero_btn_title_3_control,
 #customize-control-hero_btn_title_2_control {
   padding-top: 0.5rem;
   margin-top: 0.5rem;
   border-top: 2px solid #dcdcde;
+}
+
+#customize-control-footer_block2title_control,
+#customize-control-footer_block_control {
+  padding-top: 1.5rem;
 }
 
 #customize-control-hero_btn_title_1_control {

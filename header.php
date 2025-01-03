@@ -21,15 +21,19 @@
       <div class="header_logo_kn8mrg">
         <a href="<?php echo home_url(); ?>" class="header_logo_link_tkq9k6" role="header-logo-link">
           <div class="header_logo_icon_zxi7wp">ic</div>
-          <span class="header_logo_name_sx1980"><?php echo get_theme_mod('header_setting_title') ?></span>
+          <span class="header_logo_name_sx1980">
+            <?php echo get_theme_mod('header_setting_title');?>
+          </span>
         </a>
-        <span class="header_logo_sub_ahif43"><?php echo get_theme_mod('header_setting_subtitle') ?></span>
+        <span class="header_logo_sub_ahif43">
+          <?php echo get_theme_mod('header_setting_subtitle');?>
+          </span>
       </div>
 
       <nav class="header_navigation">
 
         <ul class="header_navigation_list_adkb1t" role="navigation">
-          
+
           <?php
           $menu_id = get_theme_mod('wlx_header_menu');
           if ($menu_id) :

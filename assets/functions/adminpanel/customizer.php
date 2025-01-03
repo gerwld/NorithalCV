@@ -63,6 +63,35 @@ function getHeaderSection()
     'section' => 'header_section',
     'settings' => 'header_setting_subtitle',
   ));
+
+
+  // Function to get available menus and return them as choices
+  function my_get_menus_as_choices()
+  {
+    $menus = wp_get_nav_menus();
+    $choices = array();
+
+    // Loop through menus and prepare them as choices
+    foreach ($menus as $menu) {
+      $choices[$menu->term_id] = $menu->name;
+    }
+
+    return $choices;
+  }
+  // Add a setting to store the selected menu
+  $wp_customize->add_setting('wlx_header_menu', array(
+    'default'   => '',
+    'transport' => 'refresh',
+  ));
+
+  // Add the menu selector control to the customizer
+  $wp_customize->add_control('wlx_header_menu_control', array(
+    'label'    => 'Choose a menu',
+    'section'  => 'header_section',
+    'settings' => 'wlx_header_menu',
+    'type'     => 'select',
+    'choices'  => my_get_menus_as_choices(),
+  ));
 }
 
 
@@ -181,17 +210,17 @@ function getHeroSection()
     }
   };
 
-    // Add a setting
-    $wp_customize->add_setting('hero_setting_image', array(
-      'default'   => '',
-      'transport' => 'refresh',
+  // Add a setting
+  $wp_customize->add_setting('hero_setting_image', array(
+    'default'   => '',
+    'transport' => 'refresh',
   ));
 
   // Add a control
   $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_setting_image', array(
-      'label'    => __('Change Hero Image', 'mytheme'),
-      'section'  => 'hero_section',
-      'settings' => 'hero_setting_image',
+    'label'    => __('Change Hero Image', 'mytheme'),
+    'section'  => 'hero_section',
+    'settings' => 'hero_setting_image',
   )));
 
   $setButtonByID(1);
@@ -366,7 +395,7 @@ function getSocialsSection()
       ));
     }
   };
-  
+
 
   $wp_customize->add_setting("social_colors_hover", array(
     'default' => false,

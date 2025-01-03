@@ -6,7 +6,7 @@
  */
 
 // 0. Dev reset
-require_once get_template_directory() . '/assets/functions/_dev_reset.php';
+// require_once get_template_directory() . '/assets/functions/_dev_reset.php';
 
 // 1. Initialize null settings
 require_once get_template_directory() . '/assets/functions/adminpanel/initialize.php';

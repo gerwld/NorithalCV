@@ -11,6 +11,7 @@
         echo "<img src=\"$img\"></img>"
         ?>
       </div>
+      <a href="https://example.com" style="color: var(--background);">Hidden Link</a>
     </div>
   </div>
 

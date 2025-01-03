@@ -1,6 +1,3 @@
-<a href="https://example.com" style="color: var(--background);">Hidden Link</a>
-
-
 <footer class="main_footer">
   <div class="main_footer_content_h5umek ct_wrapper">
     <?php if (!get_theme_mod('footer_block1_disabled')): ?>

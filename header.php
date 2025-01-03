@@ -29,15 +29,15 @@
       <nav class="header_navigation">
 
         <ul class="header_navigation_list_adkb1t" role="navigation">
-          <li class="header_navigation_item_qpbg9x">
-            <a href="#" class="header_navigation_link_j1ph9o">Resume</a>
-          </li>
-          <li class="header_navigation_item_qpbg9x">
-            <a href="#" class="header_navigation_link_j1ph9o">Projects</a>
-          </li>
-          <li class="header_navigation_item_qpbg9x">
-            <a href="#" class="header_navigation_link_j1ph9o">Contact</a>
-          </li>
+          
+          <?php
+          $menu_id = get_theme_mod('wlx_header_menu');
+          if ($menu_id) :
+            wp_nav_menu(array('menu' => $menu_id));
+          else :
+            echo '<p>No menu selected.</p>';
+          endif;
+          ?>
 
           <div class="mobile_header_buttons_lw7g60 header_navigation_buttons_21q1vu">
             <button id="ltbtn_theme" title="Theme">

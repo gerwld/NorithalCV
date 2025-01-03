@@ -2,7 +2,14 @@
   <div class="hero_block_left_bzbb5l">
     <div class="hero_block__left__content">
       <div class="hero_block_main_img_kb3bwl">
-        <img src="https://images.unsplash.com/photo-1514543250559-83867827ecce?q=80&amp;w=2850&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Main Image"></img>
+        <?php
+        $def_img = 'https://images.unsplash.com/photo-1514543250559-83867827ecce?q=80&amp;w=2850&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+        $img = get_theme_mod('hero_setting_image');
+        if (!$img)
+          $img = $def_img;
+
+        echo "<img src=\"$img\"></img>"
+        ?>
       </div>
     </div>
   </div>

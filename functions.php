@@ -9,7 +9,7 @@
 require_once get_template_directory() . '/assets/functions/_dev_reset.php';
 
 // 1. Initialize null settings
-// require_once get_template_directory() . '/assets/functions/adminpanel/initialize.php';
+require_once get_template_directory() . '/assets/functions/adminpanel/initialize.php';
 
 // 1. Customizer settings
 require_once get_template_directory() . '/assets/functions/adminpanel/customizer.php';

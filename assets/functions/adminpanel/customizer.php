@@ -1,5 +1,5 @@
 <?php
-// Theme customizer.php
+// customizer.php
 
 
 // - Main panel

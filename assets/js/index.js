@@ -1,4 +1,4 @@
-// top jump
+// Dynamically manage the 'mv_top50' class based on scroll position
 (() => {
   "use strict";
   const addClassOnScroll = () => {
@@ -12,7 +12,7 @@
 })();
 
 
-// mobile menu
+// Handles mobile menu interactions and toggle functionality
 (() => {
   "use strict";
   const mobileMenuBTN = document.getElementById("ltbtn_mobmenu");
@@ -20,21 +20,21 @@
 
 
   const onDocumentClick = (e) => {
-    // if button
+    // Check if the mobile menu button was clicked
     if (e.target === mobileMenuBTN || mobileMenuBTN.contains(e.target)) {
       document.documentElement.classList.toggle("lt_mob_menu_opened")
     }
-    // if other buttons in menu 
+     // Allow interaction with buttons within the menu without closing it
     else if (e.target.tagName === "BUTTON" && (e.target === currentMenu || currentMenu && currentMenu?.contains(e.target))) {
       return;
     }
-    // if menu content
+    // Close the menu when clicking inside its content after a slight delay
     else if ((e.target === currentMenu || currentMenu && currentMenu?.contains(e.target))) {
       setTimeout(() => {
         document.documentElement.classList.remove("lt_mob_menu_opened")
       }, 200)
     }
-    // else close
+    // Else close
     else document.documentElement.classList.remove("lt_mob_menu_opened")
   };
 
@@ -44,10 +44,11 @@
     document.documentElement.setAttribute("data-mbmenu-listener0", "true");
   }
 })();
+
+// manages theme toggle functionality, including state persistence and icon updates
 (() => {
   "use strict";
   const STORAGE_KEY = "lwt_theme";
-  const HTML_CLASS = "lwt_dark_mode";
 
   let currentTheme = localStorage.getItem(STORAGE_KEY) || "light";
   const toggleButtons = document.querySelectorAll("#ltbtn_theme");
@@ -69,10 +70,8 @@
 
   const setCSSClass = (theme) => {
     if (theme === "dark") {
-      // document.documentElement.classList.add(HTML_CLASS)
       document.documentElement.setAttribute("data-theme", "dark");
     } else {
-      // document.documentElement.classList.remove(HTML_CLASS)
       document.documentElement.setAttribute("data-theme", "light");
     }
   }
@@ -82,7 +81,7 @@
     setCSSClass(theme);
   }
 
-  // TOGGLE BUTTON HANDLE
+  // Handle theme toggle button interactions
   document.addEventListener("click", (e) => {
     toggleButtons?.forEach(toggleButton => {
       if (toggleButton.contains(e.target)) {
@@ -101,7 +100,7 @@
     })
   })
 
-  // INITIALIZATION
+  // Initialize the theme based on the persisted state
   initializeFromState(currentTheme)
 
 })();

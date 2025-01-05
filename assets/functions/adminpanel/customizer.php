@@ -48,6 +48,16 @@ function getHeaderSection()
     'settings' => 'header_setting_title',
   ));
 
+
+  // --- Header Settings => Title setting => Partial for it
+  if (isset($wp_customize->selective_refresh)) {
+    $wp_customize->selective_refresh->add_partial('header_setting_title_partial', array(
+      'selector'            => '.header_logo_name_sx1980',
+      'settings'            => array('header_setting_title'),
+      'fallback_refresh'    => true, // If JS is not supported
+    ));
+  }
+
   // -- Header Settings => Subtitle setting 
   $wp_customize->add_setting('header_setting_subtitle', array(
     'validate_callback' => function ($validity, $value) {
@@ -137,6 +147,16 @@ function getHeroSection()
     'settings' => 'hero_setting_title',
   ));
 
+  // --- Hero Settings => Title setting => Partial for it
+  if (isset($wp_customize->selective_refresh)) {
+    $wp_customize->selective_refresh->add_partial('hero_setting_title_partial', array(
+      'selector'            => '.hero_block_title_dcfukm',
+      'settings'            => array('hero_setting_title'),
+      'fallback_refresh'    => true, // If JS is not supported
+    ));
+  }
+
+
   // -- Hero Settings => Subtitle setting 
   $wp_customize->add_setting('hero_setting_subtitle', array(
     'validate_callback' => function ($validity, $value) {
@@ -168,6 +188,16 @@ function getHeroSection()
     'section' => 'hero_section',
     'settings' => 'hero_setting_desc',
   ));
+
+  // --- Hero Settings => Subitle setting => Partial for it
+  if (isset($wp_customize->selective_refresh)) {
+    $wp_customize->selective_refresh->add_partial('hero_setting_desc_partial', array(
+      'selector'            => '.hero_block_desc_pxc8fn',
+      'settings'            => array('hero_setting_desc'),
+      'fallback_refresh'    => true, // If JS is not supported
+    ));
+  }
+
 
 
   $setButtonByID = function ($id) {
@@ -210,18 +240,36 @@ function getHeroSection()
     }
   };
 
-  // Add a setting
+  // --- Hero Settings => Button 1 setting => Partial for it
+  if (isset($wp_customize->selective_refresh)) {
+    $wp_customize->selective_refresh->add_partial('hero_btn_title_1_partial', array(
+      'selector'            => '.hero_block_nav_g6s6zi',
+      'settings'            => array('hero_btn_title_1'),
+      'fallback_refresh'    => true, // If JS is not supported
+    ));
+  }
+
+  // --- Hero Settings => Image setting
   $wp_customize->add_setting('hero_setting_image', array(
     'default'   => '',
     'transport' => 'refresh',
   ));
 
-  // Add a control
+  // --- Hero Settings => Image setting => Control for it
   $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_setting_image', array(
-    'label'    => __('Change Hero Image', 'mytheme'),
+    'label'    => __('Change Hero Image', 'norithal'),
     'section'  => 'hero_section',
     'settings' => 'hero_setting_image',
   )));
+
+  // --- Hero Settings => Subitle setting => Partial for it
+  if (isset($wp_customize->selective_refresh)) {
+    $wp_customize->selective_refresh->add_partial('hero_setting_image_partial', array(
+      'selector'            => '.hero_block_main_img_kb3bwl',
+      'settings'            => array('hero_setting_image'),
+      'fallback_refresh'    => true, // If JS is not supported
+    ));
+  }
 
   $setButtonByID(1);
   $setButtonByID(2);
@@ -271,6 +319,17 @@ function getFooterSection()
         'section' => 'footer_section',
         'settings' => $prefix . "_title",
       ));
+
+
+      // --- Hero Settings => Button 1 setting => Partial for it
+      if (isset($wp_customize->selective_refresh)) {
+        $wp_customize->selective_refresh->add_partial($prefix . '_partial', array(
+          'selector'            => '.navleb__sect' . $id,
+          'settings'            => $prefix . "_title",
+          'fallback_refresh'    => true, // If JS is not supported
+        ));
+      }
+
 
       // -- Footer Settings => Block Value setting 
       $wp_customize->add_setting($prefix . '_value', array(
@@ -324,6 +383,16 @@ function getFooterSection()
       'section' => 'footer_section',
       'settings' => 'footer_creds_value',
     ));
+
+    // --- Footer Settings => Creds Value setting => Partial for it
+    if (isset($wp_customize->selective_refresh)) {
+      $wp_customize->selective_refresh->add_partial('footer_creds_value_partial', array(
+        'selector'            => '.lbcopght_j5q49j',
+        'settings'            => "footer_creds_value",
+        'fallback_refresh'    => true, // If JS is not supported
+      ));
+    };
+
     // -- Footer Settings => Block Disable setting 
     $wp_customize->add_setting('footer_creds_disabled', array(
       'default' => false
@@ -375,7 +444,7 @@ function getSocialsSection()
     global $preset_data;
     global $wp_customize;
     if ($wp_customize && $key) {
-      // -- Footer Settings => Block 1 Title setting 
+      // -- Footer Settings => Block N Title setting 
       $wp_customize->add_setting("social_$key", array(
         'validate_callback' => function ($validity, $value) {
           return vs_validate_field($validity, $value, 1500, "Link", false);
@@ -383,7 +452,7 @@ function getSocialsSection()
         'sanitize_callback' => 'vs_sanitize_header',
         'default' => $preset_data['social_' . $key . '_title'] ?? ""
       ));
-      // --- Footer Settings => Block 1 Title setting => Control for it
+      // --- Footer Settings => Block N Title setting => Control for it
       $wp_customize->add_control('social_' . $key . '_control', array(
         'label' => ucfirst($key) . ' Link',
         'type' => 'text',
@@ -395,6 +464,15 @@ function getSocialsSection()
       ));
     }
   };
+
+      // --- Socials Settings => Block  $socials_available[0] Title setting => Partial for it
+      if (isset($wp_customize->selective_refresh)) {
+        $wp_customize->selective_refresh->add_partial('social_' . $socials_available[0] . '_partial', array(
+          'selector'            => '.soc_links_dsivaj',
+          'settings'            => 'social_' . $socials_available[0],
+          'fallback_refresh'    => true, // If JS is not supported
+        ));
+      };
 
 
   $wp_customize->add_setting("social_colors_hover", array(

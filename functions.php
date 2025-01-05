@@ -26,5 +26,3 @@ require_once get_template_directory() . '/assets/functions/enqueue-scripts.php';
 // 4. Helper functions
 require_once get_template_directory() . '/assets/functions/helpers.php';
 
-
-

@@ -1,3 +1,13 @@
+<?php
+/**
+ * The template for displaying the footer.
+ *
+ * Contains the closing of the <body> and all content after
+ *
+ * @package norithal
+ */
+
+?>
 <footer class="main_footer_40frss">
   <div class="main_footer_content_h5umek ct_wrapper">
     <?php if (!get_theme_mod('footer_block1_disabled')): ?>

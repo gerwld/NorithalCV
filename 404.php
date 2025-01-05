@@ -1,5 +1,10 @@
 <?php
-// 404-page.php
+/**
+ * The template for displaying 404 pages (not found).
+ *
+ * @package norithal
+ */
+
 get_header(); ?>
 
 <section class="page_nf404_3z6d6q" role="page-not-found">

@@ -51,6 +51,34 @@ Yes, This theme support mobile, tablet, and many other viewports.
 = 1.0 =  
 * Initial release.  
 
+== Copyright ==
+
+NorithalCV WordPress Theme, Copyright 2024 WebLXapplications.com
+NorithalCV is distributed under the terms of the GNU GPL
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+NorithalCV bundles the following third-party resources:
+
+Font Switzer
+Copyright (c) Indian Type Foundry, Jeremie Hornus
+License: ITF (Fonts); MIT (CSS)
+Source: https://www.fontshare.com/fonts/switzer
+
+Portfolio Main Image
+Copyright (c) Grzegorz Walczak 2017
+License: Unsplash License (https://unsplash.com/license)
+Source: https://unsplash.com/photos/man-using-laptop-yoIIPcrWhjI
+
+
 == License ==
 
 This theme is licensed under the GPLv2 (or later). For details, see [https://www.gnu.org/licenses/gpl-2.0.html](https://www.gnu.org/licenses/gpl-2.0.html).

@@ -12,24 +12,24 @@
   <div class="main_footer_content_h5umek ct_wrapper">
     <?php if (!get_theme_mod('footer_block1_disabled')): ?>
       <nav class="navleb_eiyrwd navleb__sect1">
-        <label class="navleb_label_od8xfo"><?php echo get_theme_mod('footer_block1_title') ?></label>
+        <label class="navleb_label_od8xfo"><?php echo esc_html(get_theme_mod('footer_block1_title')) ?></label>
         <span class="navleb_link_hbn9xu">
-          <?php echo get_theme_mod('footer_block1_value') ?>
+          <?php echo wp_kses_post(get_theme_mod('footer_block1_value')) ?>
         </span>
       </nav>
     <?php endif; ?>
     <?php if (!get_theme_mod('footer_block2_disabled')): ?>
       <nav class="navleb_eiyrwd navleb__sect2">
-        <label class="navleb_label_od8xfo"><?php echo get_theme_mod('footer_block2_title') ?></label>
+        <label class="navleb_label_od8xfo"><?php echo esc_html(get_theme_mod('footer_block2_title')) ?></label>
         <span class="navleb_link_hbn9xu">
-          <?php echo get_theme_mod('footer_block2_value') ?>
+          <?php echo wp_kses_post(get_theme_mod('footer_block2_value')) ?>
         </span>
       </nav>
     <?php endif; ?>
 
     <?php get_template_part('assets/sections/socials'); ?>
 
-    <?php if (!get_theme_mod('footer_block2_disabled')): ?>
+    <?php if (!get_theme_mod('footer_creds_disabled')): ?>
       <div class="lbcopght_j5q49j">
         <?php
         // Retrieve the value saved as HTML

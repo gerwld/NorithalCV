@@ -29,14 +29,14 @@
     <div class="header_content_66solo ct_wrapper sides_gap_51gyxe">
 
       <div class="header_logo_kn8mrg">
-        <a href="<?php echo home_url(); ?>" class="header_logo_link_tkq9k6" role="header-logo-link">
+        <a href="<?php echo esc_url( home_url() ); ?>" class="header_logo_link_tkq9k6" role="header-logo-link">
           <div class="header_logo_icon_zxi7wp">ic</div>
           <span class="header_logo_name_sx1980">
-            <?php echo get_theme_mod('header_setting_title');?>
+            <?php echo esc_html(get_theme_mod('header_setting_title'));?>
           </span>
         </a>
         <span class="header_logo_sub_ahif43">
-          <?php echo get_theme_mod('header_setting_subtitle');?>
+          <?php echo esc_html(get_theme_mod('header_setting_subtitle'));?>
           </span>
       </div>
 
@@ -47,9 +47,13 @@
           <?php
           $menu_id = get_theme_mod('wlx_header_menu');
           if ($menu_id) :
-            wp_nav_menu(array('menu' => $menu_id));
+              wp_nav_menu(array(
+                  'menu' => $menu_id,
+                  'theme_location' => 'primary-menu',
+                  'fallback_cb' => false,
+              ));
           else :
-            echo '<p>No menu selected.</p>';
+              echo '<p>No menu selected.</p>';
           endif;
           ?>
 
@@ -59,9 +63,9 @@
               <?php echo inline_svg('assets/img/icons/theme_dark.svg'); ?>
             </button>
 
-            <button id="ltbtn_lang" title="Select Language">
-              <?php echo inline_svg('assets/img/icons/lang.svg'); ?>
-            </button>
+            <!-- <button id="ltbtn_lang" title="Select Language">
+              <php echo inline_svg('assets/img/icons/lang.svg'); ?>
+            </button> -->
           </div>
 
         </ul>
@@ -72,9 +76,9 @@
             <?php echo inline_svg('assets/img/icons/theme_dark.svg'); ?>
           </button>
 
-          <button id="ltbtn_lang" title="Select Language">
-            <?php echo inline_svg('assets/img/icons/lang.svg'); ?>
-          </button>
+          <!-- <button id="ltbtn_lang" title="Select Language">
+            <php echo inline_svg('assets/img/icons/lang.svg'); ?>
+          </button> -->
 
           <button id="ltbtn_mobmenu" title="Menu">
             <span>Menu</span>

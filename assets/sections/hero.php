@@ -17,9 +17,9 @@
 
   <div class="hero_block_right_6r9dz0">
     <div class="hero_block_right__content_2h9yzm">
-      <h1 class="hero_block_title_dcfukm"><?php echo get_theme_mod('hero_setting_title') ?></h1>
-      <h3 class="hero_block_subtitle_dfa0fm"><?php echo get_theme_mod('hero_setting_subtitle') ?></h3>
-      <p class="hero_block_desc_pxc8fn"><?php echo get_theme_mod('hero_setting_desc') ?></p>
+      <h1 class="hero_block_title_dcfukm"><?php echo esc_html(get_theme_mod('hero_setting_title')) ?></h1>
+      <h3 class="hero_block_subtitle_dfa0fm"><?php echo esc_html(get_theme_mod('hero_setting_subtitle')) ?></h3>
+      <p class="hero_block_desc_pxc8fn"><?php echo esc_html(get_theme_mod('hero_setting_desc')) ?></p>
       <nav class="hero_block_nav_g6s6zi">
         <?php
         // Loop through buttons (adjust the range as needed for your buttons)

@@ -22,3 +22,9 @@ add_action('wp_enqueue_scripts', 'enqueue_assets_main');
   }
   wp_enqueue_style('my-theme-settings', get_template_directory_uri() . '/assets/styles/admin-settings.css');
  }add_action('admin_enqueue_scripts', 'weblx_enqueue_styles', 10);
+
+ // Dynamic Title Support
+ add_theme_support( 'title-tag' );
+
+ // RRS Links
+ add_theme_support( 'automatic-feed-links' );

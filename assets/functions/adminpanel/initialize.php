@@ -78,14 +78,14 @@ function wlx_create_norithal_main_menu() {
 
       // Add default menu items to the menu
       wp_update_nav_menu_item($menu_id, 0, array(
-          'menu-item-title' =>  __('Resume'),
+          'menu-item-title' =>  'Resume',
           'menu-item-classes' => 'home',
           'menu-item-url'   => home_url('/resume'), 
           'menu-item-status' => 'publish'
       ));
 
       wp_update_nav_menu_item($menu_id, 0, array(
-          'menu-item-title' => __('Projects'),
+          'menu-item-title' => 'Projects',
           'menu-item-classes' => 'about',
           'menu-item-url'   => home_url('/projects'), 
           'menu-item-status' => 'publish'
@@ -93,7 +93,7 @@ function wlx_create_norithal_main_menu() {
 
 
       wp_update_nav_menu_item($menu_id, 0, array(
-        'menu-item-title' => __('Contact'),
+        'menu-item-title' => 'Contact',
         'menu-item-classes' => 'about',
         'menu-item-url'   => home_url('/contact'), 
         'menu-item-status' => 'publish'

@@ -75,8 +75,7 @@ Source: https://www.fontshare.com/fonts/switzer
 
 Portfolio Main Image
 Copyright (c) Grzegorz Walczak 2017
-License: Unsplash License (https://unsplash.com/license)
-Source: https://unsplash.com/photos/man-using-laptop-yoIIPcrWhjI
+License: CC0 1.0 Universal (CC0 1.0)
 
 
 == License ==
